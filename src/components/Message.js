@@ -6,7 +6,7 @@ const Message = ({ message }) => {
     const [user] = useAuthState(auth)
     return (
         <>
-            {message.senderId !== user.uid ? <div class="grid pb-11">
+            {message.senderId !== user.uid ? <div class="grid ">
                 <div class="flex gap-2.5 mb-4">
                     <img
                         src={message.avatar}
@@ -23,7 +23,7 @@ const Message = ({ message }) => {
                         </div>
                     </div>
                 </div>
-            </div> : <div class="flex gap-2.5 justify-end pb-40">
+            </div> : <div class="flex gap-2.5 justify-end ">
                 <div class="">
                     <div class="grid mb-2">
                         <h5 class="text-right text-gray-900 text-sm font-semibold leading-snug pb-1">{message.name}</h5>
@@ -34,7 +34,6 @@ const Message = ({ message }) => {
                             <h3 class="text-gray-500 text-xs font-normal leading-4 py-1">05:14 PM</h3>
                         </div>
                     </div>
-
                 </div>
                 <img src={message.avatar} alt="userImage" class="w-10 h-11" />
             </div>}

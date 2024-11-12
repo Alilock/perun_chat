@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { auth, db } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-const SendMessage = () => {
+const SendMessage = ({ scroll }) => {
     const [message, setMessage] = useState('')
     const [user] = useAuthState(auth)
     const sendMessage = async () => {
@@ -16,20 +16,22 @@ const SendMessage = () => {
                 createAt: serverTimestamp(),
                 senderId: user.uid
             })
-            setMessage('')
+            scroll.current.scrollIntoView({ behavior: 'smooth' })
         } catch (error) {
             console.log('Error sending message', error);
+        } finally {
+            setMessage('')
         }
     }
     return (
-        <div class="w-full pl-3 pr-1 py-1 rounded-3xl border border-gray-200 items-center gap-2 inline-flex justify-between">
+        <div class="bg-white w-1/3 left-1/2 -translate-x-1/2 fixed bottom-6  pl-3 pr-1 py-1 rounded-3xl border border-gray-200 items-center gap-2 inline-flex justify-between">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
                     <g id="User Circle">
                         <path id="icon" d="M6.05 17.6C6.05 15.3218 8.26619 13.475 11 13.475C13.7338 13.475 15.95 15.3218 15.95 17.6M13.475 8.525C13.475 9.89191 12.3669 11 11 11C9.6331 11 8.525 9.89191 8.525 8.525C8.525 7.1581 9.6331 6.05 11 6.05C12.3669 6.05 13.475 7.1581 13.475 8.525ZM19.25 11C19.25 15.5563 15.5563 19.25 11 19.25C6.44365 19.25 2.75 15.5563 2.75 11C2.75 6.44365 6.44365 2.75 11 2.75C15.5563 2.75 19.25 6.44365 19.25 11Z" stroke="#4F46E5" stroke-width="1.6" />
                     </g>
                 </svg>
-                <input onChange={e => setMessage(e.target.value)} class="grow shrink basis-0 text-black text-xs font-medium leading-4 focus:outline-none" placeholder="Type here..." />
+                <input value={message} onChange={e => setMessage(e.target.value)} class="grow shrink basis-0 text-black text-xs font-medium leading-4 focus:outline-none" placeholder="Type here..." />
             </div>
             <div class="flex items-center gap-2">
                 <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
