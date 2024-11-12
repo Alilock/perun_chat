@@ -16,6 +16,7 @@ const ChatBox = () => {
 
                 fetchedMessages.push({ ...doc.data(), id: doc.id })
             })
+            ref.current.scrollIntoView({ behavior: 'smooth' })
             setMessages(fetchedMessages)
         })
         return () => unsubscribe()
