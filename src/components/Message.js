@@ -1,9 +1,12 @@
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
+import moment from 'moment';
 
 const Message = ({ message }) => {
     const [user] = useAuthState(auth)
+    console.log('hamisin', message);
+
     return (
         <>
             {message.senderId !== user.uid ? <div class="grid ">
@@ -18,7 +21,7 @@ const Message = ({ message }) => {
                                 <h5 class="text-gray-900 text-sm font-normal leading-snug">{message.text}</h5>
                             </div>
                             <div class="justify-end items-center inline-flex mb-2.5">
-                                <h6 class="text-gray-500 text-xs font-normal leading-4 py-1">05:14 PM</h6>
+                                <h6 class="text-gray-500 text-xs font-normal leading-4 py-1">{moment(message.createAt.toDate()).fromNow()}</h6>
                             </div>
                         </div>
                     </div>
@@ -31,7 +34,7 @@ const Message = ({ message }) => {
                             <h2 class="text-white text-sm font-normal leading-snug">{message.text}</h2>
                         </div>
                         <div class="justify-start items-center inline-flex">
-                            <h3 class="text-gray-500 text-xs font-normal leading-4 py-1">05:14 PM</h3>
+                            <h3 class="text-gray-500 text-xs font-normal leading-4 py-1">{moment(message.createAt.toDate()).fromNow()}</h3>
                         </div>
                     </div>
                 </div>

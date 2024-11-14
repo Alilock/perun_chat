@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 const firebaseConfig = {
     apiKey: "AIzaSyDVvmvb4AWYBYc0saIVWrBShNPwi7LJokc",
     authDomain: "fir-app-545ef.firebaseapp.com",
@@ -15,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
+export const realTimeDB = getDatabase(app);
 export const signInWithGoogle = async () => {
     try {
         const response = await signInWithPopup(auth, googleProvider);

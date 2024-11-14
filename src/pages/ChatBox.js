@@ -3,6 +3,7 @@ import SendMessage from '../components/SendMessage'
 import Message from '../components/Message'
 import { collection, limit, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase'
+import Header from '../components/Header'
 
 const ChatBox = () => {
     const [messages, setMessages] = useState([])
@@ -25,6 +26,7 @@ const ChatBox = () => {
 
     return (
         <div class="w-full h-screen px-8 flex flex-col justify-between ">
+            <Header />
             <div className='flex flex-col gap-2 pb-20'>
                 {
                     messages.map((message) => {
