@@ -12,8 +12,8 @@ const Header = () => {
             const data = snapshot.val()
             if (data) {
                 const typingUsers = Object.values(data)
-                const filteredTypingUsers = typingUsers.filter((typingUser) => typingUser.uid !== user.uid)
-                setTypings(filteredTypingUsers)
+                // const filteredTypingUsers = typingUsers.filter((typingUser) => typingUser.uid !== user.uid)
+                setTypings(typingUsers)
             }
             else {
                 setTypings([])

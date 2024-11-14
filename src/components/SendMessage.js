@@ -41,7 +41,6 @@ const SendMessage = ({ scroll }) => {
 
 
 
-
     return (
         <div class="bg-white w-1/3 left-1/2 -translate-x-1/2 fixed bottom-6  pl-3 pr-1 py-1 rounded-3xl border border-gray-200 items-center gap-2 inline-flex justify-between">
             <div class="flex items-center gap-2">

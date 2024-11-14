@@ -4,8 +4,25 @@ import Message from '../components/Message'
 import { collection, limit, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase'
 import Header from '../components/Header'
+import { requestForToken } from '../utils/helper'
 
 const ChatBox = () => {
+
+    const getToken = async () => {
+        const permission = await Notification.requestPermission()
+        if (permission == 'granted') {
+            const token = await requestForToken()
+            if (token) {
+                console.log('Token', token);
+            }
+        }
+    }
+
+    useEffect(() => {
+        getToken()
+    }, [])
+
+
     const [messages, setMessages] = useState([])
     const ref = useRef()
     useEffect(() => {

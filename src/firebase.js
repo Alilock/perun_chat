@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
+import { getMessaging } from "firebase/messaging";
 const firebaseConfig = {
     apiKey: "AIzaSyDVvmvb4AWYBYc0saIVWrBShNPwi7LJokc",
     authDomain: "fir-app-545ef.firebaseapp.com",
@@ -12,11 +13,14 @@ const firebaseConfig = {
     appId: "1:455495746649:web:4b18d1b2a5ec5105565d48",
     measurementId: "G-15XZ9EPRNL"
 };
+
+
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 export const realTimeDB = getDatabase(app);
+export const messaging = getMessaging(app);
 export const signInWithGoogle = async () => {
     try {
         const response = await signInWithPopup(auth, googleProvider);
